@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irina Cazacu — Data Fabric Engineer</title>
+<meta name="description" content="Azure Fabric &amp; lakehouse engineering for retail and distribution teams, from someone who ran the operations floor for 20 years.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14171a;
+    --bg-raised:#1b1f23;
+    --bg-card:#1e2226;
+    --line:#2b3036;
+    --line-strong:#3a4048;
+    --text:#edeff1;
+    --text-dim:#9aa1a8;
+    --text-faint:#6b7178;
+    --bronze:#c17f45;
+    --bronze-dim:#8a5c33;
+    --silver:#c9d0d6;
+    --silver-dim:#8f969c;
+    --gold:#e0b13d;
+    --gold-dim:#9c7c29;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 32px;}
+  img{max-width:100%; display:block;}
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,23,26,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:72px;
+  }
+  .logo{
+    font-family:var(--font-display); font-weight:600; font-size:18px;
+    letter-spacing:0.02em;
+  }
+  .logo span{color:var(--gold);}
+  .navlinks{display:flex; gap:32px; font-size:14px; font-family:var(--font-mono);}
+  .navlinks a{color:var(--text-dim); text-decoration:none; transition:color .15s;}
+  .navlinks a:hover{color:var(--gold);}
+  @media (max-width:640px){ .navlinks{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{padding:100px 0 80px; position:relative; overflow:hidden;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:13px; letter-spacing:0.08em;
+    color:var(--bronze); text-transform:uppercase; margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:24px; height:1px; background:var(--bronze);}
+  h1{
+    font-family:var(--font-display); font-weight:600;
+    font-size:clamp(34px, 5.2vw, 58px);
+    line-height:1.08; letter-spacing:-0.01em;
+    max-width:820px;
+  }
+  h1 .accent{
+    background:linear-gradient(90deg, var(--bronze) 0%, var(--silver) 50%, var(--gold) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .lede{
+    margin-top:24px; max-width:600px; font-size:18px; color:var(--text-dim);
+  }
+  .hero-cta{display:flex; gap:16px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-mono); font-size:14px; padding:13px 24px;
+    border-radius:2px; text-decoration:none; display:inline-block;
+    border:1px solid var(--line-strong); transition:all .15s;
+  }
+  .btn-primary{background:var(--gold); color:#1a1400; border-color:var(--gold); font-weight:500;}
+  .btn-primary:hover{background:#eec158;}
+  .btn-secondary{color:var(--text); border-color:var(--line-strong);}
+  .btn-secondary:hover{border-color:var(--silver); color:var(--silver);}
+
+  /* pipeline signature graphic */
+  .pipeline{margin-top:70px; display:flex; align-items:center; gap:0; max-width:820px;}
+  .stage{flex:1; text-align:center; position:relative;}
+  .stage-dot{
+    width:14px; height:14px; border-radius:50%; margin:0 auto 14px;
+  }
+  .stage:nth-child(1) .stage-dot{background:var(--bronze); box-shadow:0 0 0 4px rgba(193,127,69,0.15);}
+  .stage:nth-child(3) .stage-dot{background:var(--silver); box-shadow:0 0 0 4px rgba(201,208,214,0.12);}
+  .stage:nth-child(5) .stage-dot{background:var(--gold); box-shadow:0 0 0 4px rgba(224,177,61,0.18);}
+  .stage-label{font-family:var(--font-mono); font-size:12px; color:var(--text-dim); letter-spacing:0.04em;}
+  .stage-sub{font-size:11px; color:var(--text-faint); margin-top:3px;}
+  .connector{flex:0.6; height:1px; background:linear-gradient(90deg, var(--line-strong), var(--line-strong)); position:relative; top:-24px;}
+  @media (max-width:640px){ .pipeline{display:none;} }
+
+  /* ---------- section shell ---------- */
+  section{padding:88px 0; border-top:1px solid var(--line);}
+  .section-head{margin-bottom:56px; max-width:640px;}
+  .section-eyebrow{
+    font-family:var(--font-mono); font-size:12px; color:var(--text-faint);
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;
+  }
+  h2{font-family:var(--font-display); font-weight:600; font-size:clamp(24px,3vw,32px);}
+  .section-desc{color:var(--text-dim); margin-top:14px; font-size:16px;}
+
+  /* ---------- journey timeline ---------- */
+  .timeline{position:relative; padding-left:36px; max-width:720px;}
+  .timeline::before{content:''; position:absolute; left:6px; top:6px; bottom:6px; width:1px; background:var(--line-strong);}
+  .tl-item{position:relative; padding-bottom:44px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-marker{position:absolute; left:-36px; top:4px; width:13px; height:13px; border-radius:50%; border:2px solid var(--bg); }
+  .tl-item:nth-child(1) .tl-marker{background:var(--text-faint);}
+  .tl-item:nth-child(2) .tl-marker{background:var(--bronze);}
+  .tl-item:nth-child(3) .tl-marker{background:var(--silver);}
+  .tl-item:nth-child(4) .tl-marker{background:var(--gold);}
+  .tl-year{font-family:var(--font-mono); font-size:12px; color:var(--text-faint); margin-bottom:6px;}
+  .tl-title{font-family:var(--font-display); font-size:19px; font-weight:600; margin-bottom:6px;}
+  .tl-desc{color:var(--text-dim); font-size:15px; max-width:560px;}
+
+  /* ---------- services / medallion tiers ---------- */
+  .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:820px){ .tiers{grid-template-columns:1fr;} }
+  .tier{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-top:3px solid var(--line-strong); padding:32px 26px; border-radius:4px;
+  }
+  .tier.bronze{border-top-color:var(--bronze);}
+  .tier.silver{border-top-color:var(--silver);}
+  .tier.gold{border-top-color:var(--gold);}
+  .tier-label{font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;}
+  .tier.bronze .tier-label{color:var(--bronze);}
+  .tier.silver .tier-label{color:var(--silver);}
+  .tier.gold .tier-label{color:var(--gold);}
+  .tier-title{font-family:var(--font-display); font-size:20px; font-weight:600; margin-bottom:12px;}
+  .tier-desc{color:var(--text-dim); font-size:14.5px; margin-bottom:18px;}
+  .tier ul{list-style:none;}
+  .tier li{
+    font-size:14px; color:var(--text-dim); padding-left:16px; position:relative; margin-bottom:9px;
+  }
+  .tier li::before{content:'—'; position:absolute; left:0; color:var(--text-faint);}
+  .tier-price-row{
+    display:flex; align-items:baseline; gap:8px; margin:20px 0 22px;
+    padding-top:18px; border-top:1px solid var(--line);
+  }
+  .tier-price-from{font-family:var(--font-mono); font-size:11px; color:var(--text-faint); text-transform:uppercase;}
+  .tier-price{font-family:var(--font-display); font-size:26px; font-weight:600;}
+  .tier-price-unit{font-family:var(--font-mono); font-size:13px; color:var(--text-dim);}
+  .tier-cta{
+    display:inline-block; width:100%; text-align:center; box-sizing:border-box;
+    font-family:var(--font-mono); font-size:13px; padding:11px 0;
+    border:1px solid var(--line-strong); border-radius:2px; text-decoration:none;
+    color:var(--text); transition:all .15s;
+  }
+  .tier.bronze .tier-cta:hover{border-color:var(--bronze); color:var(--bronze);}
+  .tier.silver .tier-cta:hover{border-color:var(--silver); color:var(--silver);}
+  .tier.gold .tier-cta:hover{border-color:var(--gold); color:var(--gold);}
+  .pricing-note{
+    margin-top:28px; font-size:13.5px; color:var(--text-faint); max-width:640px;
+  }
+
+  /* ---------- portfolio ---------- */
+  .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  @media (max-width:700px){ .projects{grid-template-columns:1fr;} }
+  .project{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:4px;
+    padding:26px; transition:border-color .15s;
+  }
+  .project:hover{border-color:var(--line-strong);}
+  .project-num{font-family:var(--font-mono); font-size:12px; color:var(--text-faint); margin-bottom:12px;}
+  .project-title{font-family:var(--font-display); font-size:18px; font-weight:600; margin-bottom:8px;}
+  .project-desc{color:var(--text-dim); font-size:14.5px; margin-bottom:16px;}
+  .project-tags{display:flex; gap:8px; flex-wrap:wrap;}
+  .tag{font-family:var(--font-mono); font-size:11px; color:var(--text-dim); border:1px solid var(--line-strong); padding:3px 9px; border-radius:2px;}
+  .repo-link{
+    display:inline-flex; align-items:center; gap:8px; margin-top:44px;
+    font-family:var(--font-mono); font-size:14px; color:var(--gold); text-decoration:none;
+  }
+
+  /* ---------- credentials ---------- */
+  .creds{display:flex; gap:16px; flex-wrap:wrap;}
+  .cred{
+    border:1px solid var(--line); border-radius:4px; padding:18px 22px;
+    background:var(--bg-card); min-width:200px; flex:1;
+  }
+  .cred-name{font-family:var(--font-display); font-weight:600; font-size:15px; margin-bottom:4px;}
+  .cred-status{font-family:var(--font-mono); font-size:12px; color:var(--text-faint);}
+  .cred.inprogress .cred-status{color:var(--gold);}
+
+  /* ---------- contact / footer ---------- */
+  footer{padding:88px 0 56px; border-top:1px solid var(--line);}
+  .contact-title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(26px,4vw,40px);
+    max-width:680px; line-height:1.15;
+  }
+  .contact-title span{color:var(--gold);}
+  .contact-links{display:flex; gap:28px; margin-top:36px; flex-wrap:wrap;}
+  .contact-links a{
+    font-family:var(--font-mono); font-size:14px; text-decoration:none; color:var(--text-dim);
+    border-bottom:1px solid var(--line-strong); padding-bottom:3px; transition:color .15s, border-color .15s;
+  }
+  .contact-links a:hover{color:var(--gold); border-color:var(--gold);}
+  .foot-note{margin-top:64px; font-size:13px; color:var(--text-faint); font-family:var(--font-mono);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">IRINA<span>.</span>CAZACU</div>
+    <div class="navlinks">
+      <a href="#journey">Journey</a>
+      <a href="#services">Services &amp; pricing</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" style="border-top:none;">
+  <div class="wrap">
+    <div class="eyebrow">Data fabric &amp; lakehouse engineering</div>
+    <h1>From the warehouse floor<br>to the <span class="accent">data lakehouse.</span></h1>
+    <p class="lede">
+      Nearly 20 years running retail replenishment operations, now building the Azure Fabric
+      pipelines that give retail and distribution teams the same visibility over their data
+      that I once had to build by hand on the floor.
+    </p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn btn-primary">See the work</a>
+      <a href="#contact" class="btn btn-secondary">Get in touch</a>
+    </div>
+
+    <div class="pipeline">
+      <div class="stage">
+        <div class="stage-dot"></div>
+        <div class="stage-label">Bronze</div>
+        <div class="stage-sub">raw operational data</div>
+      </div>
+      <div class="connector"></div>
+      <div class="stage">
+        <div class="stage-dot"></div>
+        <div class="stage-label">Silver</div>
+        <div class="stage-sub">cleaned &amp; modeled</div>
+      </div>
+      <div class="connector"></div>
+      <div class="stage">
+        <div class="stage-dot"></div>
+        <div class="stage-label">Gold</div>
+        <div class="stage-sub">decisions you can trust</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">The path here</div>
+      <h2>Two disciplines, one habit of mind</h2>
+      <p class="section-desc">
+        Every stage of this path taught the same lesson from a different angle: a business
+        runs on the quality of the information underneath it.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-marker"></div>
+        <div class="tl-year">Foundation</div>
+        <div class="tl-title">Chemical engineering</div>
+        <div class="tl-desc">
+          Trained to think in systems, inputs, and process control — the same logic that
+          now shapes how I design a data pipeline.
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-marker"></div>
+        <div class="tl-year">~20 years</div>
+        <div class="tl-title">Retail &amp; replenishment operations leadership</div>
+        <div class="tl-desc">
+          Ran the operational side of retail and distribution — demand, stock flow, and the
+          reporting gaps that come from data spread across too many disconnected systems.
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-marker"></div>
+        <div class="tl-year">2025 – 2026</div>
+        <div class="tl-title">Azure fundamentals</div>
+        <div class="tl-desc">
+          AZ-900 and DP-900 certified, plus a Firebrand Training data engineering bootcamp,
+          to formalize the cloud and data platform side of the work.
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-marker"></div>
+        <div class="tl-year">In progress — target Dec 2026 / Jan 2027</div>
+        <div class="tl-title">DP-700: Microsoft Fabric Data Engineer Associate</div>
+        <div class="tl-desc">
+          Deep specialization in Microsoft Fabric — lakehouses, pipelines, and the medallion
+          architecture this site borrows its structure from.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">How I can help</div>
+      <h2>Engagements, structured like the data itself</h2>
+      <p class="section-desc">
+        Retail and distribution teams tend to need help at one of three depths. I've named
+        them after the layers I actually build.
+      </p>
+    </div>
+
+    <div class="tiers">
+      <div class="tier bronze">
+        <div class="tier-label">Bronze</div>
+        <div class="tier-title">Lakehouse foundation</div>
+        <div class="tier-desc">Get scattered operational data into one governed home.</div>
+        <ul>
+          <li>Microsoft Fabric / lakehouse setup</li>
+          <li>Ingesting source systems (ERP, POS, inventory)</li>
+          <li>Establishing raw data landing zones</li>
+        </ul>
+        <div class="tier-price-row">
+          <span class="tier-price-from">From</span>
+          <span class="tier-price">£750</span>
+          <span class="tier-price-unit">/ project</span>
+        </div>
+        <a href="#contact" class="tier-cta">Enquire</a>
+      </div>
+      <div class="tier silver">
+        <div class="tier-label">Silver</div>
+        <div class="tier-title">Pipelines &amp; modeling</div>
+        <div class="tier-desc">Turn raw data into clean, trustworthy, queryable tables.</div>
+        <ul>
+          <li>PySpark / Fabric pipeline development</li>
+          <li>Data cleaning, transformation, and modeling</li>
+          <li>Automated refresh &amp; orchestration</li>
+        </ul>
+        <div class="tier-price-row">
+          <span class="tier-price-from">From</span>
+          <span class="tier-price">£1,800</span>
+          <span class="tier-price-unit">/ project</span>
+        </div>
+        <a href="#contact" class="tier-cta">Enquire</a>
+      </div>
+      <div class="tier gold">
+        <div class="tier-label">Gold</div>
+        <div class="tier-title">Strategic consulting</div>
+        <div class="tier-desc">Data that's ready for the decisions leadership actually makes.</div>
+        <ul>
+          <li>Replenishment &amp; demand reporting layers</li>
+          <li>Dashboard-ready gold datasets</li>
+          <li>Advisory grounded in real ops experience</li>
+        </ul>
+        <div class="tier-price-row">
+          <span class="tier-price-from">From</span>
+          <span class="tier-price">£300</span>
+          <span class="tier-price-unit">/ day</span>
+        </div>
+        <a href="#contact" class="tier-cta">Enquire</a>
+      </div>
+    </div>
+
+    <p class="pricing-note">
+      Prices are starting points — every engagement gets scoped to the size of your data and
+      systems before a final quote. Ongoing support is also available as a monthly retainer
+      from £600/month. Get in touch for a free 20-minute scoping call.
+    </p>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Selected work</div>
+      <h2>Portfolio</h2>
+      <p class="section-desc">
+        Four projects built to show the full lakehouse lifecycle, from raw ingestion to a
+        gold layer ready for reporting. Code and architecture notes are public on GitHub.
+      </p>
+    </div>
+
+    <div class="projects">
+      <div class="project">
+        <div class="project-num">01</div>
+        <div class="project-title">Lakehouse foundation</div>
+        <div class="project-desc">
+          Standing up a Fabric lakehouse from scratch — bronze-layer ingestion, folder
+          structure, and governance basics.
+        </div>
+        <div class="project-tags"><span class="tag">Fabric</span><span class="tag">Lakehouse</span></div>
+      </div>
+      <div class="project">
+        <div class="project-num">02</div>
+        <div class="project-title">Pipeline development</div>
+        <div class="project-desc">
+          PySpark transformation pipelines that move raw data through cleaning and modeling
+          into analysis-ready tables.
+        </div>
+        <div class="project-tags"><span class="tag">PySpark</span><span class="tag">ETL</span></div>
+      </div>
+      <div class="project">
+        <div class="project-num">03</div>
+        <div class="project-title">Retail data modeling</div>
+        <div class="project-desc">
+          A schema and modeling approach built around retail replenishment concepts —
+          demand, stock position, and lead time.
+        </div>
+        <div class="project-tags"><span class="tag">Data modeling</span><span class="tag">Retail</span></div>
+      </div>
+      <div class="project">
+        <div class="project-num">04</div>
+        <div class="project-title">Reporting layer</div>
+        <div class="project-desc">
+          Gold-layer datasets shaped for dashboards, closing the loop from raw ingestion to
+          a decision-ready view.
+        </div>
+        <div class="project-tags"><span class="tag">Gold layer</span><span class="tag">Reporting</span></div>
+      </div>
+    </div>
+
+    <a href="https://github.com/Irina-Cazacu" class="repo-link">View the full repo on GitHub →</a>
+  </div>
+</section>
+
+<section id="credentials" style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Credentials</div>
+      <h2>Certifications</h2>
+    </div>
+    <div class="creds">
+      <div class="cred">
+        <div class="cred-name">AZ-900</div>
+        <div class="cred-status">Azure Fundamentals — certified</div>
+      </div>
+      <div class="cred">
+        <div class="cred-name">DP-900</div>
+        <div class="cred-status">Azure Data Fundamentals — certified</div>
+      </div>
+      <div class="cred inprogress">
+        <div class="cred-name">DP-700</div>
+        <div class="cred-status">Fabric Data Engineer Associate — in progress</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="contact-title">Have a data problem worth <span>refining?</span></h2>
+    <p class="lede" style="margin-top:18px;">
+      If your team's data is scattered across systems the way mine used to be, let's talk
+      about what a lakehouse could look like for you.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:hello@irinacazacu.dev">hello@irinacazacu.dev</a>
+      <a href="https://linkedin.com/in/irina-cazacu">LinkedIn</a>
+      <a href="https://github.com/Irina-Cazacu">GitHub</a>
+    </div>
+    <div class="foot-note">© 2026 Irina Cazacu. Built with Fabric, PySpark, and 20 years of retail floor time.</div>
+  </div>
+</footer>
+
+</body>
+</html>
