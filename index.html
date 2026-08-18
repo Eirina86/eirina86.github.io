@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Irina Cazacu — Data Fabric Engineer</title>
-<meta name="description" content="Azure Fabric &amp; lakehouse engineering for retail and distribution teams, from someone who ran the operations floor for 20 years.">
+<title>Onyx Data Engineering — Data Fabric &amp; Lakehouse Engineering</title>
+<meta name="description" content="Onyx Data Engineering — Azure Fabric &amp; lakehouse engineering for retail and distribution teams, founded by someone who ran the operations floor for 20 years.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -216,14 +216,29 @@
   }
   .contact-links a:hover{color:var(--gold); border-color:var(--gold);}
   .foot-note{margin-top:64px; font-size:13px; color:var(--text-faint); font-family:var(--font-mono);}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+  @media (max-width:820px){ .about-grid{grid-template-columns:1fr; gap:32px;} }
+  .about-body p{color:var(--text-dim); font-size:16px; margin-bottom:18px; max-width:520px;}
+  .about-body p:last-child{margin-bottom:0;}
+  .about-body strong{color:var(--text); font-weight:600;}
+  .about-facts{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line);}
+  .fact{
+    display:flex; justify-content:space-between; gap:20px;
+    padding:16px 0; border-bottom:1px solid var(--line);
+  }
+  .fact-label{font-family:var(--font-mono); font-size:12px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; padding-top:2px;}
+  .fact-value{font-size:14.5px; color:var(--text); text-align:right; max-width:280px;}
 </style>
 </head>
 <body>
 
 <header>
   <nav class="wrap">
-    <div class="logo">IRINA<span>.</span>CAZACU</div>
+    <div class="logo">ONYX<span>.</span>DATA</div>
     <div class="navlinks">
+      <a href="#about">About</a>
       <a href="#journey">Journey</a>
       <a href="#services">Services &amp; pricing</a>
       <a href="#portfolio">Portfolio</a>
@@ -263,6 +278,70 @@
         <div class="stage-dot"></div>
         <div class="stage-label">Gold</div>
         <div class="stage-sub">decisions you can trust</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">About Onyx</div>
+      <h2>An operator's eye, applied to data</h2>
+      <p class="section-desc">
+        Onyx Data Engineering is founded and run by Irina Cazacu.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-body">
+        <p>
+          I spent nearly two decades leading retail and replenishment operations —
+          responsible for the flow of stock across stores and distribution centres,
+          and for the reporting that told (or failed to tell) leadership what was
+          actually happening on the ground. I know first-hand what it costs a
+          business when data is scattered across disconnected systems, and what it's
+          worth when it isn't.
+        </p>
+        <p>
+          That experience, combined with a background in <strong>chemical engineering</strong>,
+          gave me a natural fit for data engineering: both disciplines are about
+          designing reliable systems and controlling what flows through them. I'm now
+          formalizing that into Microsoft Azure and Fabric expertise, and applying it
+          specifically to the retail and distribution sector I know from the inside.
+        </p>
+        <p>
+          My focus is building lakehouse foundations, pipelines, and reporting layers
+          that give operational teams the visibility I once had to piece together
+          manually — done properly, on modern cloud infrastructure, the first time.
+        </p>
+      </div>
+
+      <div class="about-facts">
+        <div class="fact">
+          <div class="fact-label">Background</div>
+          <div class="fact-value">Chemical Engineering</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Operational experience</div>
+          <div class="fact-value">~20 years, retail &amp; replenishment leadership</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Cloud platform</div>
+          <div class="fact-value">Microsoft Azure &amp; Fabric</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Certifications</div>
+          <div class="fact-value">AZ-900, DP-900, DP-700 (in progress)</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Focus sector</div>
+          <div class="fact-value">Retail &amp; distribution</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Based in</div>
+          <div class="fact-value">United Kingdom</div>
+        </div>
       </div>
     </div>
   </div>
@@ -479,7 +558,7 @@
       <a href="https://www.linkedin.com/in/irinacazacu">LinkedIn</a>
       <a href="https://github.com/Eirina86">GitHub</a>
     </div>
-    <div class="foot-note">© 2026 Irina Cazacu. Built with Fabric, PySpark, and 20 years of retail floor time.</div>
+    <div class="foot-note">© 2026 Onyx Data Engineering — founded by Irina Cazacu. Built with Fabric, PySpark, and 20 years of retail floor time.</div>
   </div>
 </footer>
 
