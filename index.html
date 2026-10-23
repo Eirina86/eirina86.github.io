@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Onyx Data Engineering — Data Fabric &amp; Lakehouse Engineering</title>
-<meta name="description" content="Onyx Data Engineering — Azure Fabric &amp; lakehouse engineering for retail and distribution teams, founded by someone who ran the operations floor for 20 years.">
+<meta name="description" content="Onyx Data Engineering — Microsoft Fabric &amp; lakehouse engineering for retail and distribution teams, founded by someone who ran the operations floor for 20 years.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314171a'/%3E%3Ccircle cx='18' cy='32' r='7' fill='%23c17f45'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23c9d0d6'/%3E%3Ccircle cx='46' cy='32' r='7' fill='%23e0b13d'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eirina86.github.io/">
+<meta property="og:title" content="Onyx Data Engineering — From the Warehouse Floor to the Data Lakehouse">
+<meta property="og:description" content="Microsoft Fabric &amp; lakehouse engineering for retail and distribution teams, by Irina Cazacu.">
+<meta property="og:image" content="https://eirina86.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -61,7 +70,19 @@
   .navlinks{display:flex; gap:26px; font-size:13.5px; font-family:var(--font-mono);}
   .navlinks a{color:var(--text-dim); text-decoration:none; transition:color .15s;}
   .navlinks a:hover{color:var(--gold);}
-  @media (max-width:760px){ .navlinks{display:none;} }
+  .menu-btn{
+    display:none; background:none; border:1px solid var(--line-strong); color:var(--text);
+    font-family:var(--font-mono); font-size:13px; padding:7px 14px; border-radius:2px; cursor:pointer;
+  }
+  @media (max-width:760px){
+    .menu-btn{display:block;}
+    .navlinks{
+      display:none; position:absolute; top:72px; left:0; right:0;
+      flex-direction:column; gap:0; background:var(--bg-raised); border-bottom:1px solid var(--line);
+    }
+    .navlinks.open{display:flex;}
+    .navlinks a{padding:16px 24px; border-top:1px solid var(--line); font-size:15px;}
+  }
 
   /* ---------- hero ---------- */
   .hero{padding:100px 0 80px; position:relative; overflow:hidden;}
@@ -211,6 +232,10 @@
   .cred-name{font-family:var(--font-display); font-weight:600; font-size:15px; margin-bottom:4px;}
   .cred-status{font-family:var(--font-mono); font-size:12px; color:var(--text-faint);}
   .cred.inprogress .cred-status{color:var(--gold);}
+  a.cred{color:inherit; text-decoration:none; transition:border-color .15s;}
+  a.cred:hover{border-color:var(--line-strong);}
+  .cred-verify{display:inline-block; margin-top:10px; font-family:var(--font-mono); font-size:12px; color:var(--gold);}
+  .contact-cta{margin-top:32px;}
 
   /* ---------- contact / footer ---------- */
   footer{padding:88px 0 56px; border-top:1px solid var(--line);}
@@ -247,7 +272,8 @@
 <header>
   <nav class="wrap">
     <div class="logo">ONYX DATA <span>ENGINEERING</span></div>
-    <div class="navlinks">
+    <button class="menu-btn" aria-expanded="false" aria-controls="navlinks" onclick="var n=document.getElementById('navlinks');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <div class="navlinks" id="navlinks" onclick="if(event.target.tagName==='A'){this.classList.remove('open');var b=document.querySelector('.menu-btn');b.setAttribute('aria-expanded','false');b.textContent='Menu';}">
       <a href="#about">About</a>
       <a href="#journey">Journey</a>
       <a href="#services">Services &amp; pricing</a>
@@ -262,7 +288,7 @@
     <div class="eyebrow">Data fabric &amp; Lakehouse Engineering</div>
     <h1>From the Warehouse Floor<br>to the <span class="accent">Data Lakehouse.</span></h1>
     <p class="lede">
-      Nearly 20 years running Retail Replenishment Operations, now building the Azure Fabric
+      Nearly 20 years running Retail Replenishment Operations, now building the Microsoft Fabric
       pipelines that give retail and distribution teams the same visibility over their data
       that I once had to build by hand on the floor.
     </p>
@@ -555,21 +581,23 @@
   </div>
 </section>
 
-<section id="credentials" style="padding-bottom:0;">
+<section id="credentials">
   <div class="wrap">
     <div class="section-head">
       <div class="section-eyebrow">Credentials</div>
       <h2>Certifications</h2>
     </div>
     <div class="creds">
-      <div class="cred">
+      <a class="cred" href="https://learn.microsoft.com/api/credentials/share/en-us/IrinaCazacu-3018/8A20459994C98B6D?sharingId=8B61E949E106516B" target="_blank" rel="noopener">
         <div class="cred-name">AZ-900</div>
         <div class="cred-status">Azure Fundamentals — certified</div>
-      </div>
-      <div class="cred">
+        <span class="cred-verify">Verify on Microsoft Learn →</span>
+      </a>
+      <a class="cred" href="https://learn.microsoft.com/api/credentials/share/en-us/IrinaCazacu-3018/3B565E786A114DB2?sharingId=8B61E949E106516B" target="_blank" rel="noopener">
         <div class="cred-name">DP-900</div>
         <div class="cred-status">Azure Data Fundamentals — certified</div>
-      </div>
+        <span class="cred-verify">Verify on Microsoft Learn →</span>
+      </a>
       <div class="cred inprogress">
         <div class="cred-name">DP-700</div>
         <div class="cred-status">Fabric Data Engineer Associate — in progress</div>
@@ -585,6 +613,9 @@
       If your team's data is scattered across systems the way mine used to be, let's talk
       about what a lakehouse could look like for you.
     </p>
+    <div class="contact-cta">
+      <a class="btn btn-primary" href="mailto:cazacuirina@ymail.com?subject=Free%2020-minute%20scoping%20call&amp;body=Hi%20Irina%2C%0A%0AI%27d%20like%20to%20book%20a%20free%2020-minute%20call%20about%3A%0A%0A">Book a free 20-minute call</a>
+    </div>
     <div class="contact-links">
       <a href="mailto:cazacuirina@ymail.com">cazacuirina@ymail.com</a>
       <a href="https://www.linkedin.com/in/irinacazacu">LinkedIn</a>
