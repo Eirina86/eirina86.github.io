@@ -187,6 +187,16 @@
   .project-desc{color:var(--text-dim); font-size:14.5px; margin-bottom:16px;}
   .project-tags{display:flex; gap:8px; flex-wrap:wrap;}
   .tag{font-family:var(--font-mono); font-size:11px; color:var(--text-dim); border:1px solid var(--line-strong); padding:3px 9px; border-radius:2px;}
+  .project-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;}
+  .project-head .project-num{margin-bottom:0;}
+  .status{font-family:var(--font-mono); font-size:11px; padding:3px 9px; border-radius:2px; border:1px solid var(--line-strong); color:var(--text-faint);}
+  .status.done{color:var(--gold); border-color:var(--gold);}
+  .project-link{display:inline-block; margin-top:16px; font-family:var(--font-mono); font-size:13px; color:var(--gold); text-decoration:none;}
+  .project-link:hover{text-decoration:underline;}
+  .labs-head{margin-top:56px; margin-bottom:20px;}
+  .labs-head h3{font-family:var(--font-display); font-size:20px; font-weight:600; margin-bottom:6px;}
+  .labs-head p{color:var(--text-dim); font-size:14.5px; max-width:640px;}
+  .project.wide{grid-column:1 / -1;}
   .repo-link{
     display:inline-flex; align-items:center; gap:8px; margin-top:44px;
     font-family:var(--font-mono); font-size:14px; color:var(--gold); text-decoration:none;
@@ -475,51 +485,73 @@
       <div class="section-eyebrow">Selected work</div>
       <h2>Portfolio</h2>
       <p class="section-desc">
-        Four projects built to show the full lakehouse lifecycle, from raw ingestion to a
-        gold layer ready for reporting. Code and architecture notes are public on GitHub.
+        Four Microsoft Fabric projects covering the full data lifecycle, from raw ingestion
+        through pipelines and real-time analytics to security and governance, plus a hybrid
+        infrastructure lab. Code and architecture notes are public on GitHub.
       </p>
     </div>
 
     <div class="projects">
       <div class="project">
-        <div class="project-num">01</div>
-        <div class="project-title">Lakehouse foundation</div>
+        <div class="project-head"><div class="project-num">01</div><span class="status done">Phase 1 complete</span></div>
+        <div class="project-title">Lakehouse Foundation</div>
         <div class="project-desc">
-          Standing up a Fabric lakehouse from scratch — bronze-layer ingestion, folder
-          structure, and governance basics.
+          PySpark ingestion into Delta tables, queried through the SQL endpoint: the
+          bronze-to-silver foundation every later project builds on.
         </div>
-        <div class="project-tags"><span class="tag">Fabric</span><span class="tag">Lakehouse</span></div>
+        <div class="project-tags"><span class="tag">Fabric</span><span class="tag">Delta Lake</span><span class="tag">PySpark</span><span class="tag">SQL</span></div>
+        <a href="https://github.com/Eirina86/Irina_Cazacu/tree/main/projects/01-lakehouse-foundation" class="project-link">View project →</a>
       </div>
       <div class="project">
-        <div class="project-num">02</div>
-        <div class="project-title">Pipeline development</div>
+        <div class="project-head"><div class="project-num">02</div><span class="status">Planned</span></div>
+        <div class="project-title">End-to-End Data Pipeline</div>
         <div class="project-desc">
-          PySpark transformation pipelines that move raw data through cleaning and modeling
-          into analysis-ready tables.
+          Incremental loads and orchestration with Fabric Pipelines and Dataflow Gen2,
+          surfaced in Power BI through Direct Lake.
         </div>
-        <div class="project-tags"><span class="tag">PySpark</span><span class="tag">ETL</span></div>
+        <div class="project-tags"><span class="tag">Fabric Pipelines</span><span class="tag">Dataflow Gen2</span><span class="tag">Power BI</span></div>
       </div>
       <div class="project">
-        <div class="project-num">03</div>
-        <div class="project-title">Retail data modeling</div>
+        <div class="project-head"><div class="project-num">03</div><span class="status">Planned</span></div>
+        <div class="project-title">Real-Time Analytics with KQL</div>
         <div class="project-desc">
-          A schema and modeling approach built around retail replenishment concepts —
-          demand, stock position, and lead time.
+          Streaming data from Eventstream into Eventhouse, with KQL queries for anomaly
+          detection and alerting.
         </div>
-        <div class="project-tags"><span class="tag">Data modeling</span><span class="tag">Retail</span></div>
+        <div class="project-tags"><span class="tag">Eventstream</span><span class="tag">Eventhouse</span><span class="tag">KQL</span></div>
       </div>
       <div class="project">
-        <div class="project-num">04</div>
-        <div class="project-title">Reporting layer</div>
+        <div class="project-head"><div class="project-num">04</div><span class="status">Planned</span></div>
+        <div class="project-title">Security &amp; Governance Framework</div>
         <div class="project-desc">
-          Gold-layer datasets shaped for dashboards, closing the loop from raw ingestion to
-          a decision-ready view.
+          Row-level security, sensitivity labels and OneLake access roles, governed with
+          Microsoft Purview.
         </div>
-        <div class="project-tags"><span class="tag">Gold layer</span><span class="tag">Reporting</span></div>
+        <div class="project-tags"><span class="tag">RLS</span><span class="tag">Sensitivity labels</span><span class="tag">Purview</span></div>
       </div>
     </div>
 
-    <a href="https://github.com/Eirina86/Irina_Cazacu" class="repo-link">View the full repo on GitHub →</a>
+    <a href="https://github.com/Eirina86/Irina_Cazacu" class="repo-link">View the full Fabric portfolio on GitHub →</a>
+
+    <div class="labs-head">
+      <div class="section-eyebrow">Infrastructure &amp; labs</div>
+      <h3>Beyond the lakehouse</h3>
+      <p>Hands-on infrastructure work that underpins the data platform: Linux, networking, security and hybrid cloud.</p>
+    </div>
+
+    <div class="projects">
+      <div class="project wide">
+        <div class="project-head"><div class="project-num">LAB</div><span class="status done">Phase 1 complete</span></div>
+        <div class="project-title">Hybrid Linux Homelab connected to Azure</div>
+        <div class="project-desc">
+          A spare laptop rebuilt as a secure, remotely managed Ubuntu server: zero-trust access
+          with Tailscale and no open router ports, Docker services on dedicated storage, and a
+          roadmap to Azure Arc monitoring and encrypted offsite backups to Azure Blob Storage.
+        </div>
+        <div class="project-tags"><span class="tag">Ubuntu</span><span class="tag">Tailscale</span><span class="tag">Docker</span><span class="tag">Azure Arc</span><span class="tag">restic</span><span class="tag">Azure Blob</span></div>
+        <a href="https://github.com/Eirina86/homelab-azure-hybrid" class="project-link">View project →</a>
+      </div>
+    </div>
   </div>
 </section>
 
