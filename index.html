@@ -198,7 +198,7 @@
   .tier-price{font-family:var(--font-display); font-size:26px; font-weight:600;}
   .tier-price-unit{font-family:var(--font-mono); font-size:13px; color:var(--text-dim);}
   .tier-cta{
-    display:inline-block; width:100%; text-align:center; box-sizing:border-box;
+    display:inline-block; margin-top:22px; width:100%; text-align:center; box-sizing:border-box;
     font-family:var(--font-mono); font-size:13px; padding:11px 0;
     border:1px solid var(--line-strong); border-radius:2px; text-decoration:none;
     color:var(--text); transition:all .15s;
@@ -291,7 +291,7 @@
     <div class="navlinks" id="navlinks" onclick="if(event.target.tagName==='A'){this.classList.remove('open');var b=document.querySelector('.menu-btn');b.setAttribute('aria-expanded','false');b.textContent='Menu';}">
       <a href="#about">About</a>
       <a href="#journey">Journey</a>
-      <a href="#services">Services &amp; pricing</a>
+      <a href="#services">Services</a>
       <a href="#portfolio">Portfolio</a>
       <a href="#contact">Contact</a>
     </div>
@@ -484,11 +484,6 @@
           <li>Ingesting source systems (ERP, POS, inventory)</li>
           <li>Establishing raw data landing zones</li>
         </ul>
-        <div class="tier-price-row">
-          <span class="tier-price-from">From</span>
-          <span class="tier-price">£750</span>
-          <span class="tier-price-unit">/ project</span>
-        </div>
         <a href="#contact" class="tier-cta">Enquire</a>
       </div>
       <div class="tier silver">
@@ -500,11 +495,6 @@
           <li>Data cleaning, transformation, and modeling</li>
           <li>Automated refresh &amp; orchestration</li>
         </ul>
-        <div class="tier-price-row">
-          <span class="tier-price-from">From</span>
-          <span class="tier-price">£1,800</span>
-          <span class="tier-price-unit">/ project</span>
-        </div>
         <a href="#contact" class="tier-cta">Enquire</a>
       </div>
       <div class="tier gold">
@@ -516,19 +506,14 @@
           <li>Dashboard-ready gold datasets</li>
           <li>Advisory grounded in real ops experience</li>
         </ul>
-        <div class="tier-price-row">
-          <span class="tier-price-from">From</span>
-          <span class="tier-price">£300</span>
-          <span class="tier-price-unit">/ day</span>
-        </div>
         <a href="#contact" class="tier-cta">Enquire</a>
       </div>
     </div>
 
     <p class="pricing-note">
-      Prices are starting points — every engagement gets scoped to the size of your data and
-      systems before a final quote. Ongoing support is also available as a monthly retainer
-      from £600/month. Get in touch for a free 20-minute scoping call.
+      Every engagement is scoped to the size of your data and systems before a quote.
+      Ongoing support is also available as a monthly retainer. Get in touch for a free
+      20-minute scoping call.
     </p>
   </div>
 </section>
